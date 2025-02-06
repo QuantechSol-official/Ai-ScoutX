@@ -2,21 +2,22 @@
 import { useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "./context";
-import { 
-  GoogleAuthProvider, 
-  signInWithEmailAndPassword, 
-  signInWithPopup, 
-  signOut, 
-  onAuthStateChanged 
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "firebase/firebase"; // Adjust path if needed
 
 // ----------------------------------------------------------------------
 
-const initialState = {
+export const initialAuthState = {
   isAuthenticated: false,
   isLoading: false,
-  isInitialized: false,  // Maintains original variable
+  isInitialized: false, // Maintains original variable
   user: null,
   errorMessage: null,
 };
@@ -48,6 +49,25 @@ const reducerHandlers = {
     isLoading: false,
   }),
 
+  SIGNUP_REQUEST: (state) => ({
+    ...state,
+    isLoading: true,
+    errorMessage: null,
+  }),
+
+  SIGNUP_SUCCESS: (state, action) => ({
+    ...state,
+    isAuthenticated: true,
+    isLoading: false,
+    user: action.payload.user,
+  }),
+
+  SIGNUP_ERROR: (state, action) => ({
+    ...state,
+    errorMessage: action.payload.errorMessage,
+    isLoading: false,
+  }),
+
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
@@ -55,13 +75,13 @@ const reducerHandlers = {
   }),
 };
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   const handler = reducerHandlers[action.type];
   return handler ? handler(state, action) : state;
 };
 
 export function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialAuthState);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -86,17 +106,43 @@ export function AuthProvider({ children }) {
     dispatch({ type: "LOGIN_REQUEST" });
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      dispatch({ type: "LOGIN_SUCCESS", payload: { user: userCredential.user } });
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { user: userCredential.user },
+      });
     } catch (err) {
       dispatch({ type: "LOGIN_ERROR", payload: { errorMessage: err.message } });
     }
   };
+  // 🔹 Signup with Email and Password
+  const signup = async ({ email, password }) => {
+    dispatch({ type: "SIGNUP_REQUEST" });
 
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      dispatch({
+        type: "SIGNUP_SUCCESS",
+        payload: { user: userCredential.user },
+      });
+    } catch (err) {
+      dispatch({
+        type: "SIGNUP_ERROR",
+        payload: { errorMessage: err.message },
+      });
+    }
+  };
   // 🔹 Login with Google
   const loginWithGoogle = async () => {
     dispatch({ type: "LOGIN_REQUEST" });
-
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -122,6 +168,7 @@ export function AuthProvider({ children }) {
     <AuthContext
       value={{
         ...state,
+        signup,
         login,
         logout,
         loginWithGoogle,
