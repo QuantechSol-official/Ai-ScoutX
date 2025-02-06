@@ -6,14 +6,16 @@ import { useForm } from "react-hook-form";
 
 // Local Imports
 import Logo from "assets/appLogo.svg?react";
-import { Button, Card, Checkbox, Input, InputErrorMsg } from "components/ui";
+import { Button, Card, Checkbox, Input, InputErrorMsg, Spinner } from "components/ui";
 import { useAuthContext } from "app/contexts/auth/context";
 import { schema } from "./schema";
 import { Page } from "components/shared/Page";
+import { useState } from "react";
 
 // ----------------------------------------------------------------------
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState(false)
   const { login, errorMessage, loginWithGoogle } = useAuthContext();
 
 const {
@@ -28,11 +30,13 @@ const {
   },
 });
 
-  const onSubmit = (data) => {
-    login({
+  const onSubmit = async (data) => {
+    setIsLoading(true)
+    await login({
       email: data.email,
       password: data.password,
     });
+    setIsLoading(false)
   };
 
   const onGoogleSignIn = async (e) => {
@@ -102,9 +106,13 @@ const {
                   Forgot Password?
                 </a>
               </div>
-
-              <Button type="submit" className="mt-5 w-full" color="primary">
-                Sign In
+              <Button 
+                type="submit" 
+                className="mt-5 w-full flex justify-center items-center" 
+                color="primary" 
+                disabled={isLoading} // Disable button when loading
+              >
+                {isLoading ? <Spinner className="h-5 w-5" /> : "Sign In"}
               </Button>
             </form>
             <div className="mt-4 text-center text-xs+">
@@ -112,7 +120,7 @@ const {
                 <span>Dont have Account?</span>{" "}
                 <Link
                   className="text-primary-600 transition-colors hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-600"
-                  to="/pages/sign-up-v1"
+                  to="/signup"
                 >
                   Create account
                 </Link>
