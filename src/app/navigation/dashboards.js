@@ -1,5 +1,6 @@
 import { HomeIcon } from '@heroicons/react/24/outline';
 import DashboardsIcon from 'assets/dualicons/dashboards.svg?react'
+import WindowIcon from 'assets/nav-icons/window.svg?react'
 import { NAV_TYPE_ROOT, NAV_TYPE_ITEM } from 'constants/app.constant'
 
 const ROOT_DASHBOARDS = '/dashboards'
@@ -15,13 +16,20 @@ export const dashboards = {
     Icon: DashboardsIcon,
     childs: [
         {
-            id: 'dashboards.home',
-            path: path(ROOT_DASHBOARDS, '/home'),
+            id: 'dashboards.crm-analytics',
+            path: path(ROOT_DASHBOARDS, '/crm-analytics'),
             type: NAV_TYPE_ITEM,
-            title: 'Home',
-            transKey: 'nav.dashboards.home',
+            title: 'CRM Analytics',
+            transKey: 'nav.dashboards.crm-analytics',
+            Icon: WindowIcon,
+        },
+        {
+            id: 'dashboards.reporting',
+            path: path(ROOT_DASHBOARDS, '/reporting'),
+            type: NAV_TYPE_ITEM,
+            title: 'Reporting',
+            transKey: 'nav.dashboards.reporting',
             Icon: HomeIcon,
         },
-
     ]
 }
