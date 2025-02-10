@@ -25,14 +25,22 @@ const protectedRoutes = {
           children: [
             {
               index: true,
-              element: <Navigate to="/dashboards/home" />,
+              element: <Navigate to="/dashboards/crm-analytics" />,
             },
             {
-              path: "home",
+              path: "crm-analytics",
               lazy: async () => ({
-                Component: (await import("app/pages/dashboards/home")).default,
+                Component: (await import("app/pages/dashboards/crm-analytics"))
+                  .default,
               }),
             },
+            {
+              path: "reporting",
+              lazy: async () => ({
+                Component: (await import("app/pages/dashboards/reporting")).default,
+              }),
+            },
+            
           ],
         },
       ],

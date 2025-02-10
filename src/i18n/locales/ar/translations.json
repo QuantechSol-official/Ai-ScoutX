@@ -2,7 +2,9 @@
   "nav": {
     "dashboards": {
       "dashboards": "لوحات التحكم",
-      "home": "الرئيسية"
+      "home": "الرئيسية",
+      "crm-analytics": "تحليلات CRM",
+      "reporting": "إعداد التقارير"
     },
     "settings": {
       "settings": "الإعدادات",
