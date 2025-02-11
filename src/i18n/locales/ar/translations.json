@@ -6,6 +6,11 @@
       "crm-analytics": "تحليلات CRM",
       "reporting": "إعداد التقارير"
     },
+    "reports": {
+      "listing": "تحليلات التقارير",
+      "create": "إنشاء تقرير",
+      "reports": "التقارير"
+    },
     "settings": {
       "settings": "الإعدادات",
       "general": "عام",

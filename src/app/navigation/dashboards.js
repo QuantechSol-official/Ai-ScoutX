@@ -1,4 +1,3 @@
-import { HomeIcon } from '@heroicons/react/24/outline';
 import DashboardsIcon from 'assets/dualicons/dashboards.svg?react'
 import WindowIcon from 'assets/nav-icons/window.svg?react'
 import { NAV_TYPE_ROOT, NAV_TYPE_ITEM } from 'constants/app.constant'
@@ -22,14 +21,6 @@ export const dashboards = {
             title: 'CRM Analytics',
             transKey: 'nav.dashboards.crm-analytics',
             Icon: WindowIcon,
-        },
-        {
-            id: 'dashboards.reporting',
-            path: path(ROOT_DASHBOARDS, '/reporting'),
-            type: NAV_TYPE_ITEM,
-            title: 'Reporting',
-            transKey: 'nav.dashboards.reporting',
-            Icon: HomeIcon,
-        },
+        }
     ]
 }
