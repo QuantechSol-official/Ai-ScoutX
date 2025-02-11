@@ -14,13 +14,13 @@ const publicRoutes = {
             //       .default,
             //   }),
             // },
-            {
-              path: "sign-in-2",
-              lazy: async () => ({
-                Component: (await import("app/pages/prototypes/sign-in-2"))
-                  .default,
-              }),
-            },
+            // {
+            //   path: "sign-in-2",
+            //   lazy: async () => ({
+            //     Component: (await import("app/pages/prototypes/sign-in-2"))
+            //       .default,
+            //   }),
+            // },
           ],
         },
         // {
