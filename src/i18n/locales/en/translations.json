@@ -6,6 +6,11 @@
       "crm-analytics": "CRM Analytics",
       "reporting": "Reporting"
     },
+    "reports": {
+      "listing": "Reports Analytics",
+      "create": "Create Report",
+      "reports": "Reports"
+    },
     "settings": {
       "settings": "Settings",
       "general": "General",

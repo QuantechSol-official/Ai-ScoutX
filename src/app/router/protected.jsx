@@ -33,11 +33,27 @@ const protectedRoutes = {
                 Component: (await import("app/pages/dashboards/crm-analytics"))
                   .default,
               }),
+            } 
+          ],
+        },
+        {
+          path: "reports",
+          children: [
+            {
+              index: true,
+              element: <Navigate to="/reports/listing" />,
             },
             {
-              path: "reporting",
+              path: "listing",
               lazy: async () => ({
-                Component: (await import("app/pages/dashboards/reporting")).default,
+                Component: (await import("app/pages/reports/listing"))
+                  .default,
+              }),
+            },
+            {
+              path: "create",
+              lazy: async () => ({
+                Component: (await import("app/pages/reports/create")).default,
               }),
             },
             

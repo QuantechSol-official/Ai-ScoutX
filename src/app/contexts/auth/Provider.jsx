@@ -86,9 +86,11 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch({
-          type: "INITIALIZE",
-          payload: { isAuthenticated: true, user },
+        user.getIdToken().then(() => {
+          dispatch({
+            type: "INITIALIZE",
+            payload: { isAuthenticated: true, user },
+          });
         });
       } else {
         dispatch({
@@ -97,9 +99,10 @@ export function AuthProvider({ children }) {
         });
       }
     });
-
+  
     return () => unsubscribe(); // Cleanup listener
   }, []);
+  
 
   // 🔹 Login with Email and Password
   const login = async ({ email, password }) => {
@@ -111,9 +114,12 @@ export function AuthProvider({ children }) {
         email,
         password,
       );
+      const user = userCredential.user;
+      // Wait for Firebase to confirm authentication state
+      await user.getIdToken(); // Ensures token is available
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: { user: userCredential.user },
+        payload: { user },
       });
     } catch (err) {
       dispatch({ type: "LOGIN_ERROR", payload: { errorMessage: err.message } });
@@ -156,7 +162,12 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await signOut(auth);
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: "LOGOUT" }); 
+      // Force state update to reflect immediately
+      dispatch({
+        type: "INITIALIZE",
+        payload: { isAuthenticated: false, user: null },
+      });
     } catch (err) {
       console.error("Logout error:", err);
     }
