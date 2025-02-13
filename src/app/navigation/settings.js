@@ -32,5 +32,33 @@ export const settings = {
             transKey: 'nav.settings.appearance',
             Icon: TbPalette,
         },
+        {
+            id: 'accountSettings',
+            type: NAV_TYPE_ITEM,
+            path: '/settings/account-settings', // Or whatever path you want
+            title: 'Account Settings',
+            transKey: 'nav.settings.accountSettings',
+        },
+        {
+            id: 'preferences',
+            type: NAV_TYPE_ITEM,
+            path: '/settings/preferences', // Or whatever path you want
+            title: 'Preferences',
+            transKey: 'nav.settings.preferences',
+        },
+        {
+            id: 'apiIntegration',
+            type: NAV_TYPE_ITEM,
+            path: '/settings/api-integration', // Or whatever path you want
+            title: 'API Integration',
+            transKey: 'nav.settings.apiIntegration',
+        },
+        {
+            id: 'notifications',
+            type: NAV_TYPE_ITEM,
+            path: '/settings/notifications', // Or whatever path you want
+            title: 'Notifications',
+            transKey: 'nav.settings.notifications',
+        }
     ]
 }
