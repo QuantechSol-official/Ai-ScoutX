@@ -16,10 +16,26 @@ export const dashboards = {
     childs: [
         {
             id: 'dashboards.crm-analytics',
-            path: path(ROOT_DASHBOARDS, '/crm-analytics'),
+            path: path(ROOT_DASHBOARDS, '/overview'),
             type: NAV_TYPE_ITEM,
-            title: 'CRM Analytics',
-            transKey: 'nav.dashboards.crm-analytics',
+            title: 'Overview',
+            transKey: 'nav.dashboards.overview',
+            Icon: WindowIcon,
+        },
+        {
+            id: 'dashboards.crm-analytics',
+            path: path(ROOT_DASHBOARDS, '/quick-stats'),
+            type: NAV_TYPE_ITEM,
+            title: 'Quick Stats',
+            transKey: 'nav.dashboards.quickStats',
+            Icon: WindowIcon,
+        },
+        {
+            id: 'dashboards.crm-analytics',
+            path: path(ROOT_DASHBOARDS, '/recent-reports'),
+            type: NAV_TYPE_ITEM,
+            title: 'Recent Reports',
+            transKey: 'nav.dashboards.recentReports',
             Icon: WindowIcon,
         }
     ]

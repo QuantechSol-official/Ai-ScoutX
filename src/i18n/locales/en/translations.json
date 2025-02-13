@@ -4,17 +4,49 @@
       "dashboards": "Dashboards",
       "home": "Home",
       "crm-analytics": "CRM Analytics",
-      "reporting": "Reporting"
+      "reporting": "Reporting",
+      "overview": "Overview",
+      "quickStats": "Quick Stats",
+      "recentReports": "Recent Reports"
+    },
+    "marketIntelligence":{
+      "marketIntelligence": "Market Intelligence",
+      "productAnalysis": "Product Analysis",
+      "marketValidation": "Market Validation",
+      "competitionTracking": "Competition Tracking",
+      "trendAnalysis": "Trend Analysis"
+      },
+      "metaAds": {
+      "metaAds": "Meta Ads",
+      "campaignOverview": "Campaign Overview",
+      "performanceMetrics": "Performance Metrics",
+      "audienceInsights": "Audience Insights",
+      "budgetManagement": "Budget Management"
     },
     "reports": {
       "listing": "Reports Analytics",
       "create": "Create Report",
-      "reports": "Reports"
+      "reports": "Reports",
+      "generatedReports": "Generated Reports",
+      "reportTemplates": "Report Templates",
+      "savedReports": "Saved Reports",
+      "exportCenter": "Export Center"
+    },
+    "resources": {
+      "resources": "Resources",
+      "documentation": "Documentation",
+      "tutorials": "Tutorials",
+      "bestPractices": "Best Practices",
+      "support": "Support"
     },
     "settings": {
       "settings": "Settings",
       "general": "General",
-      "appearance": "Appearance"
+      "appearance": "Appearance",
+      "accountSettings": "Account Settings",
+      "preferences": "Preferences",
+      "apiIntegration": "API Integration",
+      "notifications": "Notifications"
     }
   }
 }
