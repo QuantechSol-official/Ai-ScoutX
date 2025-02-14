@@ -7,7 +7,7 @@ import {
 } from "@headlessui/react";
 import {
   ArrowLeftStartOnRectangleIcon,
-  Cog6ToothIcon,
+  // Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
 import { TbUser } from "react-icons/tb";
 import { Link } from "react-router";
