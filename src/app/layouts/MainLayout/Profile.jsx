@@ -7,10 +7,9 @@ import {
 } from "@headlessui/react";
 import {
   ArrowLeftStartOnRectangleIcon,
-  ChatBubbleLeftIcon,
   Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
-import { TbCoins, TbUser, TbUsersGroup } from "react-icons/tb";
+import { TbUser } from "react-icons/tb";
 import { Link } from "react-router";
 
 // Local Imports
@@ -19,62 +18,63 @@ import { useAuthContext } from "app/contexts/auth/context";
 
 // ----------------------------------------------------------------------
 
-const links = [
-  {
-    id: "1",
-    title: "Profile",
-    description: "Your profile Setting",
-    to: "/settings/general",
-    Icon: TbUser,
-    color: "warning",
-  },
-  {
-    id: "2",
-    title: "Messages",
-    description: "Your messages and tasks",
-    to: "/apps/chat",
-    Icon: ChatBubbleLeftIcon,
-    color: "info",
-  },
-  {
-    id: "3",
-    title: "Team",
-    description: "Your team members",
-    to: "#",
-    Icon: TbUsersGroup,
-    color: "secondary",
-  },
-  {
-    id: "4",
-    title: "Billing",
-    description: "Your billing information",
-    to: "/settings/billing",
-    Icon: TbCoins,
-    color: "error",
-  },
-  {
-    id: "5",
-    title: "Settings",
-    description: "Webapp settings",
-    to: "/settings/appearance",
-    Icon: Cog6ToothIcon,
-    color: "success",
-  },
-];
-
 export function Profile() {
-  const {logout} = useAuthContext();
+  const { logout, user } = useAuthContext();
+  console.log(user);
   const onGoogleSignout = async () => {
-    await logout()
-  }
+    await logout();
+  };
+  const links = [
+    {
+      id: "1",
+      title: "Profile",
+      description: "Your profile Setting",
+      to: "/settings/general",
+      Icon: TbUser,
+      color: "warning",
+    },
+    // {
+    //   id: "2",
+    //   title: "Messages",
+    //   description: "Your messages and tasks",
+    //   to: "/apps/chat",
+    //   Icon: ChatBubbleLeftIcon,
+    //   color: "info",
+    // },
+    // {
+    //   id: "3",
+    //   title: "Team",
+    //   description: "Your team members",
+    //   to: "#",
+    //   Icon: TbUsersGroup,
+    //   color: "secondary",
+    // },
+    // {
+    //   id: "4",
+    //   title: "Billing",
+    //   description: "Your billing information",
+    //   to: "/settings/billing",
+    //   Icon: TbCoins,
+    //   color: "error",
+    // },
+    {
+      id: "5",
+      title: "Settings",
+      description: "Webapp settings",
+      to: "/settings/appearance",
+      Icon: Cog6ToothIcon,
+      color: "success",
+    },
+  ];
   return (
     <Popover className="relative">
       <PopoverButton
         as={Avatar}
         size={12}
         role="button"
-        src="/images/200x200.png"
-        alt="Profile"
+        src={user?.photoURL}
+        alt="photo url"
+        referrerPolicy="no-referrer"
         indicator={
           <AvatarDot color="success" className="ltr:right-0 rtl:left-0" />
         }
@@ -96,20 +96,27 @@ export function Profile() {
               <div className="flex items-center gap-4 rounded-t-lg bg-gray-100 px-4 py-5 dark:bg-dark-800">
                 <Avatar
                   size={14}
-                  src="/images/200x200.png"
-                  alt="Profile"
+                  src={user?.photoURL}
+                  alt="photo url"
+                  referrerPolicy="no-referrer"
                 />
                 <div>
                   <Link
                     className="text-base font-medium text-gray-700 hover:text-primary-600 focus:text-primary-600 dark:text-dark-100 dark:hover:text-primary-400 dark:focus:text-primary-400"
                     to="/settings/general"
                   >
-                    Travis Fuller
+                    {user?.displayName}
                   </Link>
 
-                  <p className="mt-0.5 text-xs text-gray-400 dark:text-dark-300">
-                    Product Designer
-                  </p>
+                  <div className="group relative w-40">
+                    <p className="mt-0.5 w-full truncate text-xs text-gray-400 dark:text-dark-300">
+                      {user?.email}
+                    </p>
+                    {/* Tooltip */}
+                    <span className="absolute bottom-full right-0 mb-1 hidden w-max max-w-xs rounded-md bg-gray-800 px-2 py-1 text-xs text-white group-hover:block">
+                      {user?.email}
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col pb-5 pt-2">

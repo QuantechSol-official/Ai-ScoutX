@@ -6,9 +6,10 @@ import { toast } from "sonner";
 
 // Local Imports
 import { schema } from "./schema";
-import { Button, Card, Input } from "components/ui";
+import { Button, Card, Input, Spinner } from "components/ui";
 import { useState } from "react";
 import { Listbox } from "components/shared/form/Listbox";
+import axios from "axios";
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ const regions = [
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("1");
+  const [isLoading, setIsLoading] = useState(false);
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -43,12 +45,21 @@ export default function Home() {
     defaultValues: initialState,
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    toast("We will send a detailed report to your email within 20-30 minutes.", {
-      invert: true,
-    });
-    reset();
+  const onSubmit = async (data, event) => {
+    console.log('data', data)
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      await axios.post("https://hook.eu2.make.com/9wb7n675v7gby8dqvuv93q76gr4fg5yl", data);
+      toast.success("We will send a detailed report to your email within 20-30 minutes.", {
+        invert: true,
+      });
+      reset();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "An error occurred");
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <Page title="Create Report">
@@ -164,7 +175,7 @@ export default function Home() {
                     color="primary"
                     variant = "filled"
                   >
-                    Analyze Product
+                    {isLoading ? <Spinner className="h-5 w-5" /> : "Analyze Product"}
                   </Button>
                 </div>
               </Card>

@@ -5,7 +5,7 @@ const DEFAULT_LIGHT_COLOR = "slate";
 const DEFAULT_PRIMARY_COLOR = "blue";
 
 export const defaultTheme = {
-    themeMode: "system",
+    themeMode: "dark",
     isMonochrome: false,
     themeLayout: "main-layout",
     cardSkin: 'bordered',

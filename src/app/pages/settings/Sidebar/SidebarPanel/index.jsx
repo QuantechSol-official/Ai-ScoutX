@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 // Local Imports
 import { Header } from "./Header";
-import { Footer } from "./Footer";
+// import { Footer } from "./Footer";
 import { Button, ScrollShadow } from "components/ui";
 import { createScopedKeydownHandler } from "utils/dom/createScopedKeydownHandler";
 import { useThemeContext } from "app/contexts/theme/context";
@@ -61,7 +61,7 @@ export function SidebarPanel() {
             </li>
           </ul>
         </ScrollShadow>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
