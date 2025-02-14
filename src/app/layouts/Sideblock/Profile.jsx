@@ -26,14 +26,14 @@ const links = [
     Icon: TbUser,
     color: "warning",
   },
-  {
-    id: "2",
-    title: "Settings",
-    description: "Webapp settings",
-    to: "/settings/appearance",
-    Icon: Cog6ToothIcon,
-    color: "success",
-  },
+  // {
+  //   id: "2",
+  //   title: "Settings",
+  //   description: "Webapp settings",
+  //   to: "/settings/appearance",
+  //   Icon: Cog6ToothIcon,
+  //   color: "success",
+  // },
 ];
 
 export function Profile() {

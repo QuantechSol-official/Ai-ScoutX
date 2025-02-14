@@ -1,5 +1,5 @@
 // Local Imports
-import Logo from "assets/appLogo.svg?react";
+import ShortLogo from "components/shared/logo/ShortLogo";
 import { Progress } from "components/ui";
 
 // ----------------------------------------------------------------------
@@ -7,7 +7,7 @@ import { Progress } from "components/ui";
 export function SplashScreen() {
   return (
     <div className="fixed grid h-full w-full place-content-center">
-      <Logo className="size-28" />
+      <ShortLogo />
       <Progress
         color="primary"
         isIndeterminate
