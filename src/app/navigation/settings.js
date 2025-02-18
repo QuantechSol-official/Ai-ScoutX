@@ -38,6 +38,7 @@ export const settings = {
             path: '/settings/account-settings', // Or whatever path you want
             title: 'Account Settings',
             transKey: 'nav.settings.accountSettings',
+            Icon: UserIcon,
         },
         {
             id: 'preferences',
@@ -45,6 +46,7 @@ export const settings = {
             path: '/settings/preferences', // Or whatever path you want
             title: 'Preferences',
             transKey: 'nav.settings.preferences',
+            Icon: UserIcon,
         },
         {
             id: 'apiIntegration',
@@ -52,6 +54,7 @@ export const settings = {
             path: '/settings/api-integration', // Or whatever path you want
             title: 'API Integration',
             transKey: 'nav.settings.apiIntegration',
+            Icon: UserIcon,
         },
         {
             id: 'notifications',
@@ -59,6 +62,7 @@ export const settings = {
             path: '/settings/notifications', // Or whatever path you want
             title: 'Notifications',
             transKey: 'nav.settings.notifications',
+            Icon: UserIcon,
         }
     ]
 }
