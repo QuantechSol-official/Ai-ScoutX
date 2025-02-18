@@ -46,7 +46,6 @@ export default function Home() {
   });
 
   const onSubmit = async (data, event) => {
-    console.log('data', data)
     event.preventDefault();
     setIsLoading(true);
     try {

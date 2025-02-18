@@ -9,7 +9,6 @@ import { navigation } from "app/navigation";
 import { useDidUpdate } from "hooks";
 import { isRouteActive } from "utils/isRouteActive";
 import { MainPanel } from "./MainPanel";
-import { PrimePanel } from "./PrimePanel";
 
 // ----------------------------------------------------------------------
 
@@ -27,10 +26,6 @@ export function Sidebar() {
   const [activeSegmentPath, setActiveSegmentPath] = useState(
     initialSegment?.path,
   );
-
-  const currentSegment = useMemo(() => {
-    return navigation.find((item) => item.path === activeSegmentPath);
-  }, [activeSegmentPath]);
 
   useDidUpdate(() => {
     const activePath = navigation.find((item) =>
@@ -52,11 +47,7 @@ export function Sidebar() {
         nav={navigation}
         activeSegment={activeSegmentPath}
         setActiveSegment={setActiveSegmentPath}
-      />
-      <PrimePanel
         close={close}
-        currentSegment={currentSegment}
-        pathname={pathname}
       />
     </>
   );

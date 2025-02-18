@@ -20,7 +20,6 @@ import { useAuthContext } from "app/contexts/auth/context";
 
 export function Profile() {
   const { logout, user } = useAuthContext();
-  console.log(user);
   const onGoogleSignout = async () => {
     await logout();
   };
@@ -61,7 +60,7 @@ export function Profile() {
       id: "5",
       title: "Settings",
       description: "Webapp settings",
-      to: "/settings/appearance",
+      to: "/settings/general",
       Icon: Cog6ToothIcon,
       color: "success",
     },

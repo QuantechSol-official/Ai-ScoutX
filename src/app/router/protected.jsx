@@ -2,7 +2,7 @@
 import { Navigate } from "react-router";
 
 // Local Imports
-import { AppLayout } from "app/layouts/AppLayout";
+// import { AppLayout } from "app/layouts/AppLayout";
 import { DynamicLayout } from "app/layouts/DynamicLayout";
 import AuthGuard from "middleware/AuthGuard";
 
@@ -205,17 +205,8 @@ const protectedRoutes = {
             },
           ],
         },
-      ],
-    },
-    // The app layout supports only the main layout. Avoid using it for other layouts.
-    {
-      Component: AppLayout,
-      children: [
         {
           path: "settings",
-          lazy: async () => ({
-            Component: (await import("app/pages/settings/Layout")).default,
-          }),
           children: [
             {
               index: true,
@@ -226,14 +217,6 @@ const protectedRoutes = {
               lazy: async () => ({
                 Component: (await import("app/pages/settings/sections/General"))
                   .default,
-              }),
-            },
-            {
-              path: "appearance",
-              lazy: async () => ({
-                Component: (
-                  await import("app/pages/settings/sections/Appearance")
-                ).default,
               }),
             },
             {
@@ -269,9 +252,74 @@ const protectedRoutes = {
               }),
             },
           ],
-        },
+        }
       ],
     },
+    // The app layout supports only the main layout. Avoid using it for other layouts.
+    // {
+    //   Component: AppLayout,
+    //   children: [
+    //     {
+    //       path: "settings",
+    //       lazy: async () => ({
+    //         Component: (await import("app/pages/settings/Layout")).default,
+    //       }),
+    //       children: [
+    //         {
+    //           index: true,
+    //           element: <Navigate to="/settings/general" />,
+    //         },
+    //         {
+    //           path: "general",
+    //           lazy: async () => ({
+    //             Component: (await import("app/pages/settings/sections/General"))
+    //               .default,
+    //           }),
+    //         },
+    //         {
+    //           path: "appearance",
+    //           lazy: async () => ({
+    //             Component: (
+    //               await import("app/pages/settings/sections/Appearance")
+    //             ).default,
+    //           }),
+    //         },
+    //         {
+    //           path: "account-settings",
+    //           lazy: async () => ({
+    //             Component: (
+    //               await import("app/pages/settings/account-settings")
+    //             ).default,
+    //           }),
+    //         },
+    //         {
+    //           path: "preferences",
+    //           lazy: async () => ({
+    //             Component: (
+    //               await import("app/pages/settings/preferences")
+    //             ).default,
+    //           }),
+    //         },
+    //         {
+    //           path: "api-integration",
+    //           lazy: async () => ({
+    //             Component: (
+    //               await import("app/pages/settings/api-integration")
+    //             ).default,
+    //           }),
+    //         },
+    //         {
+    //           path: "notifications",
+    //           lazy: async () => ({
+    //             Component: (
+    //               await import("app/pages/settings/notifications")
+    //             ).default,
+    //           }),
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
 };
 
