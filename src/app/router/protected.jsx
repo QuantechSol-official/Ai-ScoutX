@@ -215,7 +215,7 @@ const protectedRoutes = {
             {
               path: "general",
               lazy: async () => ({
-                Component: (await import("app/pages/settings/sections/General"))
+                Component: (await import("app/pages/settings/General"))
                   .default,
               }),
             },
